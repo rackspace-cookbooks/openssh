@@ -1,8 +1,9 @@
 #
-# Cookbook Name:: openssh
+# Cookbook Name:: rackspace_openssh
 # Recipe:: default
 #
 # Copyright 2008-2013 Opscode, Inc.
+# Copyright 2014, Rackspace, US Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,16 +19,16 @@
 #
 
 def listen_addr_for(interface, type)
-  interface_node = node['network']['interfaces'][interface]['addresses']
-  interface_node.select { |address, data| data['family'] == type }.keys[0]
+  interface_node = node[:network][:interfaces][interface][:addresses]
+  interface_node.select { |address, data| data[:family] == type }.keys[0]
 end
 
-node['openssh']['package_name'].each do |name|
+node[:rackspace_openssh][:config][:package_name].each do |name|
   package name
 end
 
 service 'ssh' do
-  service_name node['openssh']['service_name']
+  service_name node[:rackspace_openssh][:config][:service_name]
   supports value_for_platform(
     'debian' => { 'default' => [:restart, :reload, :status] },
     'ubuntu' => {
@@ -36,35 +37,34 @@ service 'ssh' do
     },
     'centos' => { 'default' => [:restart, :reload, :status] },
     'redhat' => { 'default' => [:restart, :reload, :status] },
-    'fedora' => { 'default' => [:restart, :reload, :status] },
-    'scientific' => { 'default' => [:restart, :reload, :status] },
-    'arch' => { 'default' => [:restart] },
     'default' => { 'default' => [:restart, :reload] }
   )
   action [:enable, :start]
 end
 
 template '/etc/ssh/ssh_config' do
+  cookbook node[:rackspace_openssh][:templates_cookbook][:ssh_config]
   source 'ssh_config.erb'
   mode   '0644'
   owner  'root'
-  group  node['openssh']['rootgroup']
+  group  node[:rackspace_openssh][:config][:rootgroup]
 end
 
-if node['openssh']['listen_interfaces']
+if node[:rackspace_openssh][:config][:listen_interfaces]
   listen_addresses = Array.new.tap do |a|
-    node['openssh']['listen_interfaces'].each_pair do |interface, type|
+    node[:rackspace_openssh][:config][:listen_interfaces].each_pair do |interface, type|
       a << listen_addr_for(interface, type)
     end
   end
 
-  node.set['openssh']['server']['listen_address'] = listen_addresses
+  node.set[:rackspace_openssh][:config][:server][:listen_address] = listen_addresses
 end
 
 template '/etc/ssh/sshd_config' do
+  cookbook node[:rackspace_openssh][:templates_cookbook][:sshd_config]
   source 'sshd_config.erb'
-  mode   node['openssh']['config_mode']
+  mode   node[:rackspace_openssh][:config][:config_mode]
   owner  'root'
-  group  node['openssh']['rootgroup']
+  group  node[:rackspace_openssh][:config][:rootgroup]
   notifies :restart, 'service[ssh]'
 end

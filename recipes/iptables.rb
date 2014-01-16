@@ -1,8 +1,9 @@
 #
-# Cookbook Name:: openssh
+# Cookbook Name:: rackspace_openssh
 # Recipe:: iptables
 #
 # Copyright 2013, Opscode, Inc.
+# Copyright 2014, Rackspace, US Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -17,6 +18,6 @@
 # limitations under the License.
 #
 
-include_recipe 'iptables::default'
+include_recipe 'rackspace_iptables::default'
 
 iptables_rule 'port_ssh'

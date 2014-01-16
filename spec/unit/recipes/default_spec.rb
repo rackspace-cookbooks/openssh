@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'openssh::default' do
+describe 'rackspace_openssh::default' do
   let(:chef_run) { ChefSpec::ChefRunner.new.converge(described_recipe) }
 
   it 'installs the openssh packages' do
