@@ -1,3 +1,4 @@
+---
 driver_plugin: vagrant
 driver_config:
   require_chef_omnibus: true
