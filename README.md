@@ -1,6 +1,6 @@
 openssh Cookbook
 ================
-[![Build Status](https://secure.travis-ci.org/opscode-cookbooks/openssh.png?branch=master)](http://travis-ci.org/opscode-cookbooks/openssh)
+[![Build Status'](https://secure.travis-ci.org/opscode-cookbooks/openssh.png?branch=master)'](http://travis-ci.org/opscode-cookbooks/openssh)
 
 Installs openssh.
 
@@ -23,20 +23,20 @@ Set up an iptables firewall rule to allow inbound SSH connections.
 
 Usage
 -----
-Ensure that the openssh packages are installed and the service is managed with `recipe[rackspace_openssh]`.
+Ensure that the openssh packages are installed and the service is managed with `recipe[rackspace_openssh']`.
 
 
 Attributes List
 ---------------
 The attributes list is dynamically generated, and lines up with the default openssh configs.
 
-This means anything located in [sshd_config](http://www.openbsd.org/cgi-bin/man.cgi?query=sshd_config&sektion=5) or [ssh_config](http://www.openbsd.org/cgi-bin/man.cgi?query=sshd_config&sektion=5) can be used in your node attributes.
+This means anything located in [sshd_config'](http://www.openbsd.org/cgi-bin/man.cgi?query=sshd_config&sektion=5) or [ssh_config'](http://www.openbsd.org/cgi-bin/man.cgi?query=sshd_config&sektion=5) can be used in your node attributes.
 
 * If the option can be entered more then once, use an _Array_, otherwise, use a _String_. If the option is host-specific use a `Hash` (please see below for more details).
 * Each attribute is stored as ruby case, and converted to camel case for the config file on the fly.
 * The current default attributes match the stock `ssh_config` and `sshd_config` provided by openssh.
-* The namespace for `sshd_config` is `node[:rackspace_openssh][:templates_cookbook][:server]`.
-* Likewise, the namespace for `ssh_config` is `node[:rackspace_openssh][:templates_cookbook][:client]`.
+* The namespace for `sshd_config` is `node['rackspace_openssh']['templates_cookbook']['server']`.
+* Likewise, the namespace for `ssh_config` is `node['rackspace_openssh']['templates_cookbook']['client']`.
 * An attribute can be an `Array`, a `Hash` or a `String`.
 * If it is an `Array`, each item in the array will get it's own line in the config file.
 * `Hash` attributes are meant to used with `ssh_config` namespace to create host-specific configurations. The keys of the `Hash` will be used as the `Host` entries and their associated entries as the configuration values.
@@ -45,7 +45,7 @@ This means anything located in [sshd_config](http://www.openbsd.org/cgi-bin/man.
 
 Dynamic ListenAddress
 ---------------------
-Pass in a `Hash` of interface names, and IP address type(s) to bind sshd to. This will expand to a list of IP addresses which override the default `node[:rackspace_openssh][:templates_cookbook][:server][:listen_address]` value.
+Pass in a `Hash` of interface names, and IP address type(s) to bind sshd to. This will expand to a list of IP addresses which override the default `node['rackspace_openssh']['templates_cookbook']['server']['listen_address']` value.
 
 
 Examples and Common usage
@@ -76,13 +76,13 @@ This requires use of identity files to connect
 
 ####  Bind to a specific set of address (this example actually binds to all).
 
-Not to be used with `node[:rackspace_openssh][:templates_cookbook][:listen_interfaces]`.
+Not to be used with `node['rackspace_openssh']['templates_cookbook']['listen_interfaces']`.
 
 ```json
 "openssh": {
   "server": {
     "address_family": "any",
-      "listen_address": [ "192.168.0.1", "::" ]
+      "listen_address": [ "192.168.0.1", "::" ']
     }
   }
 }
@@ -100,7 +100,7 @@ Not to be used with `node[:rackspace_openssh][:templates_cookbook][:listen_inter
 ```
 
 ### Host-specific configurations with hashes.
-You can use a `Hash` with `node[:rackspace_openssh][:templates_cookbook][:client]` to configure different values for different hosts.
+You can use a `Hash` with `node['rackspace_openssh']['templates_cookbook']['client']` to configure different values for different hosts.
 
 ```json
 "client": {
