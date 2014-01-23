@@ -20,14 +20,14 @@ Selects the packages to install by package name and manages the sshd service.
 
 Usage
 -----
-Ensure that the openssh packages are installed and the service is managed with `recipe[rackspace_openssh']`.
+Ensure that the openssh packages are installed and the service is managed with `recipe[rackspace_openssh]`.
 
 
 Attributes List
 ---------------
 The attributes list is dynamically generated, and lines up with the default openssh configs.
 
-This means anything located in [sshd_config'](http://www.openbsd.org/cgi-bin/man.cgi?query=sshd_config&sektion=5) or [ssh_config'](http://www.openbsd.org/cgi-bin/man.cgi?query=sshd_config&sektion=5) can be used in your node attributes.
+This means anything located in [sshd_config](http://www.openbsd.org/cgi-bin/man.cgi?query=sshd_config&sektion=5) or [ssh_config](http://www.openbsd.org/cgi-bin/man.cgi?query=sshd_config&sektion=5) can be used in your node attributes.
 
 * If the option can be entered more then once, use an _Array_, otherwise, use a _String_. If the option is host-specific use a `Hash` (please see below for more details).
 * Each attribute is stored as ruby case, and converted to camel case for the config file on the fly.
