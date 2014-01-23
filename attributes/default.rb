@@ -143,3 +143,4 @@ default['rackspace_openssh']['config']['server']['use_p_a_m'] = 'yes'
 # default['rackspace_openssh']['config']['server']['chroot_directory'] = 'none'
 # default['rackspace_openssh']['config']['server']['banner'] = 'none'
 # default['rackspace_openssh']['config']['server']['subsystem'] =	'sftp	/usr/libexec/sftp-server'
+

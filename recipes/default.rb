@@ -32,7 +32,6 @@ service 'ssh' do
   supports value_for_platform(
     'debian' => { 'default' => [:restart, :reload, :status] },
     'ubuntu' => {
-      '8.04' => [:restart, :reload],
       'default' => [:restart, :reload, :status]
     },
     'centos' => { 'default' => [:restart, :reload, :status] },
