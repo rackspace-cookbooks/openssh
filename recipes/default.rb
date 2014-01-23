@@ -19,8 +19,8 @@
 #
 
 def listen_addr_for(interface, type)
-  interface_node = node['network']['interfaces'][interface']['addresses']
-  interface_node.select { |address, data| data['family'] == type }.keys[0']
+  interface_node = node['network']['interfaces'][interface]['addresses']
+  interface_node.select { |address, data| data['family'] == type }.keys[0]
 end
 
 node['rackspace_openssh']['config']['package_name'].each do |name|
@@ -30,16 +30,16 @@ end
 service 'ssh' do
   service_name node['rackspace_openssh']['config']['service_name']
   supports value_for_platform(
-    'debian' => { 'default' => ['restart, :reload, :status'] },
+    'debian' => { 'default' => [:restart, :reload, :status] },
     'ubuntu' => {
-      '8.04' => ['restart, :reload'],
-      'default' => ['restart, :reload, :status']
+      '8.04' => [:restart, :reload],
+      'default' => [:restart, :reload, :status]
     },
-    'centos' => { 'default' => ['restart, :reload, :status'] },
-    'redhat' => { 'default' => ['restart, :reload, :status'] },
-    'default' => { 'default' => ['restart, :reload'] }
+    'centos' => { 'default' => [:restart, :reload, :status] },
+    'redhat' => { 'default' => [:restart, :reload, :status] },
+    'default' => { 'default' => [:restart, :reload] }
   )
-  action ['enable, :start']
+  action [:enable, :start]
 end
 
 template '/etc/ssh/ssh_config' do
@@ -66,5 +66,5 @@ template '/etc/ssh/sshd_config' do
   mode   node['rackspace_openssh']['config']['config_mode']
   owner  'root'
   group  node['rackspace_openssh']['config']['rootgroup']
-  notifies :restart, 'service[ssh']'
+  notifies :restart, 'service[ssh]'
 end

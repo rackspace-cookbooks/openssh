@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe 'rackspace_openssh::default' do
-  let(:chef_run) { ChefSpec::ChefRunner.new.converge(described_recipe) }
+  let(:chef_run) { ChefSpec::Runner.new.converge(described_recipe) }
 
   it 'installs the openssh packages' do
     expect(chef_run).to install_package('openssh-client')
@@ -10,7 +10,7 @@ describe 'rackspace_openssh::default' do
 
   it 'starts the ssh service' do
     expect(chef_run).to start_service('ssh')
-    expect(chef_run).to set_service_to_start_on_boot('ssh')
+    expect(chef_run).to enable_service('ssh')
   end
 
   it 'writes the ssh_config' do

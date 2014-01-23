@@ -22,41 +22,41 @@
 # Uncomment the ones you need, or set attributes in a role.
 #
 
-default['rackspace_openssh']['templates_cookbook']['port_ssh'] = "rackspace_openssh"
-default['rackspace_openssh']['templates_cookbook']['ssh_config'] = "rackspace_openssh"
-default['rackspace_openssh']['templates_cookbook']['sshd_config'] = "rackspace_openssh"
+default['rackspace_openssh']['templates_cookbook']['port_ssh'] = 'rackspace_openssh'
+default['rackspace_openssh']['templates_cookbook']['ssh_config'] = 'rackspace_openssh'
+default['rackspace_openssh']['templates_cookbook']['sshd_config'] = 'rackspace_openssh'
 
 default['rackspace_openssh']['config']['package_name'] = case node['platform_family']
-                                     when 'rhel', 'fedora'
-                                       %w[openssh-clients openssh']
-                                     when 'arch', 'suse'
-                                       %w[openssh']
-                                     when 'freebsd'
-                                       %w[']
-                                     else
-                                       %w[openssh-client openssh-server']
-                                     end
+                                                         when 'rhel', 'fedora'
+                                                           %w[openssh-clients openssh]
+                                                         when 'arch', 'suse'
+                                                           %w[openssh]
+                                                         when 'freebsd'
+                                                           %w[']
+                                                         else
+                                                           %w[openssh-client openssh-server]
+                                                         end
 
 default['rackspace_openssh']['config']['service_name'] = case node['platform_family']
-                                     when 'rhel', 'fedora', 'suse', 'freebsd'
-                                       'sshd'
-                                     else
-                                       'ssh'
-                                     end
+                                                         when 'rhel', 'fedora', 'suse', 'freebsd'
+                                                           'sshd'
+                                                         else
+                                                           'ssh'
+                                                         end
 
 default['rackspace_openssh']['config']['config_mode'] = case node['platform_family']
-                                    when 'rhel', 'fedora'
-                                      '0600'
-                                    else
-                                      '0644'
-                                    end
+                                                        when 'rhel', 'fedora'
+                                                          '0600'
+                                                        else
+                                                          '0644'
+                                                        end
 
 default['rackspace_openssh']['config']['rootgroup']    = case node['platform_family']
-                                     when 'freebsd'
-                                       'wheel'
-                                     else
-                                       'root'
-                                     end
+                                                         when 'freebsd'
+                                                           'wheel'
+                                                         else
+                                                           'root'
+                                                         end
 
 # ssh config group
 default['rackspace_openssh']['config']['client']['host'] = '*'

@@ -17,9 +17,6 @@ Recipes
 ### default
 Selects the packages to install by package name and manages the sshd service.
 
-### iptables
-Set up an iptables firewall rule to allow inbound SSH connections.
-
 
 Usage
 -----
