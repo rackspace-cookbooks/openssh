@@ -2,6 +2,10 @@ openssh Cookbook CHANGELOG
 ==========================
 This file is used to list changes made in each version of the openssh cookbook.
 
+v2.0.0
+------
+### Improvement
+Rackspace rework
 
 v1.3.0
 ------

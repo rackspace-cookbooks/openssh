@@ -2,7 +2,7 @@ require 'serverspec'
 include Serverspec::Helper::Exec
 include Serverspec::Helper::DetectOS
 
-describe 'openssh::default' do
+describe 'rackspace_openssh::default' do
   it 'starts the ssh service' do
     case backend(Serverspec::Commands::Base).check_os
     when 'Debian'

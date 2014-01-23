@@ -1,6 +1,4 @@
-require 'berkshelf'
+# spec_helper.rb
 require 'chefspec'
-
-Berkshelf.ui.mute do
-  Berkshelf::Berksfile.from_file('Berksfile').install(path: 'vendor/cookbooks')
-end
+require 'chefspec/berkshelf'
+at_exit { ChefSpec::Coverage.report! }
