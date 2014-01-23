@@ -22,7 +22,6 @@
 # Uncomment the ones you need, or set attributes in a role.
 #
 
-default['rackspace_openssh']['templates_cookbook']['port_ssh'] = 'rackspace_openssh'
 default['rackspace_openssh']['templates_cookbook']['ssh_config'] = 'rackspace_openssh'
 default['rackspace_openssh']['templates_cookbook']['sshd_config'] = 'rackspace_openssh'
 
