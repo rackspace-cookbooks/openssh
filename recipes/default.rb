@@ -47,6 +47,7 @@ template '/etc/ssh/ssh_config' do
   mode   '0644'
   owner  'root'
   group  node['rackspace_openssh']['config']['rootgroup']
+  variables (cookbook_name: cookbook_name)
 end
 
 if node['rackspace_openssh']['config']['server']['ListenInterfaces']
@@ -66,4 +67,5 @@ template '/etc/ssh/sshd_config' do
   owner  'root'
   group  node['rackspace_openssh']['config']['rootgroup']
   notifies :restart, 'service[ssh]'
+  variables (cookbook_name: cookbook_name)
 end
