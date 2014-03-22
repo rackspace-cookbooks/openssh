@@ -117,6 +117,7 @@ default['rackspace_openssh']['config']['server']['GSSAPICleanUpCredentials'] = '
 default['rackspace_openssh']['config']['server']['X11Forwarding'] = 'no'
 default['rackspace_openssh']['config']['server']['PrintLastlog'] = 'yes'
 default['rackspace_openssh']['config']['server']['TCPKeepAlive'] = 'yes'
+default['rackspace_openssh']['config']['server']['TCPKeepAlive'] = 'AcceptEnv LANG LC_* XMODIFIERS'
 default['rackspace_openssh']['config']['server']['Subsystem'] = case node['platform_family']
                                                                 when 'rhel'
                                                                   'sftp /usr/libexec/sftp-server'
