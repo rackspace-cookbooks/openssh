@@ -86,10 +86,14 @@ default['rackspace_openssh']['config']['client']['host'] = '*'
 # default['rackspace_openssh']['config']['client']['permit_local_command'] = 'no'
 # default['rackspace_openssh']['config']['client']['visual_host_key'] = 'no'
 # default['rackspace_openssh']['config']['client']['proxy_command'] = 'ssh -q -W %h:%p gateway.example.com'
+
+
 # sshd config group
 default['rackspace_openssh']['config']['server']['authorized_keys_file'] = '%h/.ssh/authorized_keys'
 default['rackspace_openssh']['config']['server']['challenge_response_authentication'] = 'no'
 default['rackspace_openssh']['config']['server']['use_p_a_m'] = 'yes'
+
+# Other common sshd options
 # default['rackspace_openssh']['config']['server']['port'] = '22'
 # default['rackspace_openssh']['config']['server']['address_family'] = 'any'
 # default['rackspace_openssh']['config']['server']['listen_address'] = [ '0.0.0.0 ::' ']
