@@ -11,10 +11,7 @@
 #   The supported keys of the value are
 #      'comment': An optional comment
 #      'value': The value for the option
-node['rackspace_openssh']['config']['server'].each do |key, value|
-  if value.key?('comment')
 -%>
-# <%= key -%>: <%= value['comment'] %>
-<% end -%>
-<%= key -%> = <%= value['value'] %>
-<% end -%> 
+<% node['rackspace_openssh']['config']['server'].each do |key, value| %>
+  <%= key %> <%= value %>
+<% end %>

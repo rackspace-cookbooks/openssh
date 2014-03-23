@@ -87,7 +87,6 @@ default['rackspace_openssh']['config']['client']['host'] = '*'
 # default['rackspace_openssh']['config']['client']['visual_host_key'] = 'no'
 # default['rackspace_openssh']['config']['client']['proxy_command'] = 'ssh -q -W %h:%p gateway.example.com'
 
-
 # sshd config group
 # set verbose loggin above default precedence
 normal['rackspace_openssh']['config']['server']['LogLevel'] = 'VERBOSE'
@@ -117,7 +116,8 @@ default['rackspace_openssh']['config']['server']['GSSAPICleanUpCredentials'] = '
 default['rackspace_openssh']['config']['server']['X11Forwarding'] = 'no'
 default['rackspace_openssh']['config']['server']['PrintLastlog'] = 'yes'
 default['rackspace_openssh']['config']['server']['TCPKeepAlive'] = 'yes'
-default['rackspace_openssh']['config']['server']['TCPKeepAlive'] = 'AcceptEnv LANG LC_* XMODIFIERS'
+default['rackspace_openssh']['config']['server']['TCPKeepAlive'] = 'AcceptEnv LANG LC_* XMODIFIERS
+'
 default['rackspace_openssh']['config']['server']['Subsystem'] = case node['platform_family']
                                                                 when 'rhel'
                                                                   'sftp /usr/libexec/sftp-server'
