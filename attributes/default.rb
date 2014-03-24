@@ -88,14 +88,12 @@ default['rackspace_openssh']['config']['client']['host'] = '*'
 # default['rackspace_openssh']['config']['client']['proxy_command'] = 'ssh -q -W %h:%p gateway.example.com'
 
 # sshd config group
-# set verbose loggin above default precedence
+# set verbose logging above default precedence
 normal['rackspace_openssh']['config']['server']['LogLevel'] = 'VERBOSE'
 
 default['rackspace_openssh']['config']['server']['Port'] = '22'
 default['rackspace_openssh']['config']['server']['Protocol'] = '2'
 default['rackspace_openssh']['config']['server']['HostKey'] = '/etc/ssh/ssh_host_rsa_key'
-#default['rackspace_openssh']['config']['server']['HostKey'] = '/etc/ssh/ssh_host_dsa_key'
-#default['rackspace_openssh']['config']['server']['HostKey'] = '/etc/ssh/ssh_host_ecdsa_key'
 default['rackspace_openssh']['config']['server']['ChallengeResponseAuthentication'] = 'no'
 default['rackspace_openssh']['config']['server']['KeyRegenerationInterval'] = '1h'
 default['rackspace_openssh']['config']['server']['ServerKeyBits'] = '1024'
@@ -127,6 +125,8 @@ default['rackspace_openssh']['config']['server']['Subsystem'] = case node['platf
 default['rackspace_openssh']['config']['server']['UsePAM'] = 'yes'
 
 # Other common sshd options
+# default['rackspace_openssh']['config']['server']['HostKey'] = '/etc/ssh/ssh_host_dsa_key'
+# default['rackspace_openssh']['config']['server']['HostKey'] = '/etc/ssh/ssh_host_ecdsa_key'
 # default['rackspace_openssh']['config']['server']['AddressFamily'] = 'any'
 # default['rackspace_openssh']['config']['server']['ListenAddress'] = [ '0.0.0.0 ::' ']
 # default['rackspace_openssh']['config']['server']['HostKeyV1'] = '/etc/ssh/ssh_host_key'

@@ -30,7 +30,6 @@ describe 'rackspace_openssh::default' do
   end
 
   it 'has expected sshd_config settings' do
-    # template = chef_run.template('/etc/ssh/sshd_config')
     expect(chef_run).to render_file('/etc/ssh/sshd_config').with_content('LogLevel VERBOSE')
   end
 end
