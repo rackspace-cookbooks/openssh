@@ -47,16 +47,19 @@ template '/etc/ssh/ssh_config' do
   mode   '0644'
   owner  'root'
   group  node['rackspace_openssh']['config']['rootgroup']
+  variables(
+    cookbook_name: cookbook_name
+  )
 end
 
-if node['rackspace_openssh']['config']['listen_interfaces']
+if node['rackspace_openssh']['config']['server']['ListenInterfaces']
   listen_addresses = Array.new.tap do |a|
-    node['rackspace_openssh']['config']['listen_interfaces'].each_pair do |interface, type|
+    node['rackspace_openssh']['config']['server']['ListenInterfaces'].each_pair do |interface, type|
       a << listen_addr_for(interface, type)
     end
   end
 
-  node.set['rackspace_openssh']['config']['server']['listen_address'] = listen_addresses
+  node.set['rackspace_openssh']['config']['server']['ListenAddress'] = listen_addresses
 end
 
 template '/etc/ssh/sshd_config' do
@@ -66,4 +69,7 @@ template '/etc/ssh/sshd_config' do
   owner  'root'
   group  node['rackspace_openssh']['config']['rootgroup']
   notifies :restart, 'service[ssh]'
+  variables(
+    cookbook_name: cookbook_name
+  )
 end

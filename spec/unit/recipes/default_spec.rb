@@ -28,4 +28,8 @@ describe 'rackspace_openssh::default' do
     expect(template.owner).to eq('root')
     expect(template.group).to eq('root')
   end
+
+  it 'has expected sshd_config settings' do
+    expect(chef_run).to render_file('/etc/ssh/sshd_config').with_content('LogLevel VERBOSE')
+  end
 end
