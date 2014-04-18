@@ -2,6 +2,13 @@ openssh Cookbook CHANGELOG
 ==========================
 This file is used to list changes made in each version of the openssh cookbook.
 
+v3.0.0
+------
+### Improvement
+- Improve configuration key naming
+- Add common default attributes
+  - WARNING: This change will set the HostKey attribute by default, possibly changing your server fingerprint.  See [Issue #5](https://github.com/rackspace-cookbooks/rackspace_openssh/issues/5)
+
 v2.0.0
 ------
 ### Improvement
