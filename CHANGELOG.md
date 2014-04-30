@@ -2,6 +2,13 @@ openssh Cookbook CHANGELOG
 ==========================
 This file is used to list changes made in each version of the openssh cookbook.
 
+v3.1.0
+------
+- Sets "PermitRootLogin" to default to "No"
+- Update to latest Gemfile, Rakefile and rubocop config
+- Remove logic from attributes for non-supported OS's
+- Fix rubocop to count the template tests in coverage report
+
 v3.0.0
 ------
 ### Improvement

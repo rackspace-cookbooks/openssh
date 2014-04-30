@@ -18,9 +18,10 @@
 # limitations under the License.
 #
 
+# TODO: can this code be removed?
 def listen_addr_for(interface, type)
   interface_node = node['network']['interfaces'][interface]['addresses']
-  interface_node.select { |address, data| data['family'] == type }.keys[0]
+  interface_node.select { |address, data| data['family'] == type }.keys[0] # rubocop: disable UnusedBlockArgument
 end
 
 node['rackspace_openssh']['config']['package_name'].each do |name|
