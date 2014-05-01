@@ -14,22 +14,26 @@ describe 'rackspace_openssh::default' do
   end
 
   it 'writes the ssh_config' do
-    template = chef_run.template('/etc/ssh/ssh_config')
-    expect(template).to be
-    expect(template.mode).to eq('0644')
-    expect(template.owner).to eq('root')
-    expect(template.group).to eq('root')
+    expect(chef_run).to create_template('/etc/ssh/ssh_config').with(
+      user: 'root',
+      group: 'root',
+      mode: '0644'
+    )
   end
 
-  it 'writes the sshd_config' do
-    template = chef_run.template('/etc/ssh/sshd_config')
-    expect(template).to be
-    expect(template.mode).to eq('0644')
-    expect(template.owner).to eq('root')
-    expect(template.group).to eq('root')
+  it 'writes the ssh_config' do
+    expect(chef_run).to create_template('/etc/ssh/sshd_config').with(
+      user: 'root',
+      group: 'root',
+      mode: '0644'
+    )
   end
 
   it 'has expected sshd_config settings' do
     expect(chef_run).to render_file('/etc/ssh/sshd_config').with_content('LogLevel VERBOSE')
+  end
+
+  it 'does not allow root logins' do
+    expect(chef_run).to render_file('/etc/ssh/sshd_config').with_content('PermitRootLogin no')
   end
 end

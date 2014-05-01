@@ -26,36 +26,27 @@ default['rackspace_openssh']['templates_cookbook']['ssh_config'] = 'rackspace_op
 default['rackspace_openssh']['templates_cookbook']['sshd_config'] = 'rackspace_openssh'
 
 default['rackspace_openssh']['config']['package_name'] = case node['platform_family']
-                                                         when 'rhel', 'fedora'
-                                                           %w[openssh-clients openssh]
-                                                         when 'arch', 'suse'
-                                                           %w[openssh]
-                                                         when 'freebsd'
-                                                           %w[']
+                                                         when 'rhel'
+                                                           %w(openssh-clients openssh)
                                                          else
-                                                           %w[openssh-client openssh-server]
+                                                           %w(openssh-client openssh-server)
                                                          end
 
 default['rackspace_openssh']['config']['service_name'] = case node['platform_family']
-                                                         when 'rhel', 'fedora', 'suse', 'freebsd'
+                                                         when 'rhel'
                                                            'sshd'
                                                          else
                                                            'ssh'
                                                          end
 
 default['rackspace_openssh']['config']['config_mode'] = case node['platform_family']
-                                                        when 'rhel', 'fedora'
+                                                        when 'rhel'
                                                           '0600'
                                                         else
                                                           '0644'
                                                         end
 
-default['rackspace_openssh']['config']['rootgroup']    = case node['platform_family']
-                                                         when 'freebsd'
-                                                           'wheel'
-                                                         else
-                                                           'root'
-                                                         end
+default['rackspace_openssh']['config']['rootgroup']    = 'root'
 
 # ssh config group
 default['rackspace_openssh']['config']['client']['host'] = '*'
@@ -99,7 +90,7 @@ default['rackspace_openssh']['config']['server']['KeyRegenerationInterval'] = '1
 default['rackspace_openssh']['config']['server']['ServerKeyBits'] = '1024'
 default['rackspace_openssh']['config']['server']['SyslogFacility'] = 'AUTH'
 default['rackspace_openssh']['config']['server']['LoginGraceTime'] = '2m'
-default['rackspace_openssh']['config']['server']['PermitRootLogin'] = 'yes'
+default['rackspace_openssh']['config']['server']['PermitRootLogin'] = 'no'
 default['rackspace_openssh']['config']['server']['StrictModes'] = 'yes'
 default['rackspace_openssh']['config']['server']['MaxAuthTries'] = '6'
 default['rackspace_openssh']['config']['server']['RSAAuthentication'] = 'yes'
