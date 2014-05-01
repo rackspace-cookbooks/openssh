@@ -2,6 +2,10 @@ openssh Cookbook CHANGELOG
 ==========================
 This file is used to list changes made in each version of the openssh cookbook.
 
+v3.1.1
+------
+- Fix template syntax error for [Issue #4](https://github.com/rackspace-cookbooks/rackspace_openssh/issues/4)
+
 v3.1.0
 ------
 - Sets "PermitRootLogin" to default to "No"
