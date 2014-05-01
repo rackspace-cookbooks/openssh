@@ -32,4 +32,8 @@ describe 'rackspace_openssh::default' do
   it 'has expected sshd_config settings' do
     expect(chef_run).to render_file('/etc/ssh/sshd_config').with_content('LogLevel VERBOSE')
   end
+
+  it 'does not allow root logins' do
+    expect(chef_run).to render_file('/etc/ssh/sshd_config').with_content('PermitRootLogin no')
+  end
 end

@@ -25,3 +25,8 @@ suites:
   - name: default
     run_list:
       - recipe[rackspace_openssh::default]
+    attributes:
+      rackspace_openssh:
+        config:
+          server:
+            PermitRootLogin: "yes" #required since knife-rackspace uses "root" user by default
