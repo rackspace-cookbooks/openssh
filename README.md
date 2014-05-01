@@ -1,4 +1,4 @@
-openssh Cookbook
+rackspace_openssh Cookbook
 ================
 Installs and configures openssh.
 
@@ -28,8 +28,7 @@ The attributes list is dynamically generated, and lines up with the default open
 This means anything located in [sshd_config](http://www.openbsd.org/cgi-bin/man.cgi?query=sshd_config&sektion=5) or [ssh_config](http://www.openbsd.org/cgi-bin/man.cgi?query=sshd_config&sektion=5) can be used in your node attributes.
 
 * If the option can be entered more then once, use an _Array_, otherwise, use a _String_. If the option is host-specific use a `Hash` (please see below for more details).
-* Each attribute is stored as ruby case, and converted to camel case for the config file on the fly.
-* The current default attributes match the stock `ssh_config` and `sshd_config` provided by openssh.
+* The current default attributes are opinated `ssh_config` and `sshd_config` provided by openssh.
 * The namespace for `sshd_config` is `node['rackspace_openssh']['templates_cookbook']['server']`.
 * Likewise, the namespace for `ssh_config` is `node['rackspace_openssh']['templates_cookbook']['client']`.
 * An attribute can be an `Array`, a `Hash` or a `String`.
@@ -47,34 +46,12 @@ Examples and Common usage
 -------------------------
 These can be mixed and matched in roles and attributes.  Please note, it is possible to get sshd into a state that it will not run.  If this is the case, you will need to login via an alternate method and debug sshd like normal.
 
-#### No Password logins
-
-This requires use of identity files to connect
-
-```json
-"openssh": {
-  "server": {
-    "password_authentication": "no"
-  }
-}
-```
-
-#### Enable X Forwarding
-
-```json
-"openssh": {
-  "server": {
-    "x11_forwarding": "yes"
-  }
-}
-```
-
 ####  Bind to a specific set of address (this example actually binds to all).
 
 Not to be used with `node['rackspace_openssh']['templates_cookbook']['listen_interfaces']`.
 
 ```json
-"openssh": {
+"rackspace_openssh": {
   "server": {
     "address_family": "any",
       "listen_address": [ "192.168.0.1", "::" ']
@@ -86,7 +63,7 @@ Not to be used with `node['rackspace_openssh']['templates_cookbook']['listen_int
 ### Bind to the addresses tied to a set of interfaces.
 
 ```json
-"openssh": {
+"rackspace_openssh": {
   "listen_interfaces": {
     "eth0": "inet",
     "eth1": "inet6"
@@ -142,6 +119,7 @@ License & Authors
 -----------------
 - Author:: Adam Jacob <adam@opscode.com>
 - Author:: Ted Neykov <ted.neykov@rackspace.com>
+- Author:: Ryan Richard <ryan.richard@rackspace.com>
 
 ```text
 Copyright:: 2008-2009, Opscode, Inc
